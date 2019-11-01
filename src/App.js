@@ -11,7 +11,8 @@ class App extends Component {
       { name: 'Manu', age: 29 },
       { name: 'Max', age: 26 },
     ],
-    users: { username: "Mikkidymeeep" }
+    users: { username: "Mikkidymeeep" },
+    textInput: { text: "NoTextEntered" }
   }
 
   switchNameHandler = (newName) => {
@@ -32,6 +33,12 @@ class App extends Component {
       { name: 'mikmikmik', age: 26 }
     ]}
     )
+  }
+  
+  newTextHandler = (event) => {
+    this.setState( {
+      textInput: { text: event.target.value }
+    })
   }
 
   switchUserNameHandler = (event) => {
@@ -67,7 +74,8 @@ class App extends Component {
           changed={this.switchUserNameHandler}
           currentUserName={this.state.users.username} />
           </UserOutput>
-          
+          <input type = "text" onChange = {this.newTextHandler} />
+          <p>{this.state.textInput.text}</p>
           <UserOutput username = "Mak"/>
           <UserOutput username = "Muk"/>
           
