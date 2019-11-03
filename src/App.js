@@ -5,6 +5,7 @@ import UserOutput from './UserOutput/UserOutput.js';
 import UserInput from './UserInput/UserInput.js';
 import ValidationComponent from './ValidationComponent/ValidationComponent.js';
 import CharComponent from './CharComponent/CharComponent.js';
+import Radium from 'radium';
 
 
 class App extends Component {
@@ -66,7 +67,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     const letterList = Array.from(this.state.textInput.text).map( (letter, index) => {
@@ -112,4 +117,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
