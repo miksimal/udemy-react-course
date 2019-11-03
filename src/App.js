@@ -3,6 +3,9 @@ import './App.css';
 import Person from './Person/Person';
 import UserOutput from './UserOutput/UserOutput.js';
 import UserInput from './UserInput/UserInput.js';
+import ValidationComponent from './ValidationComponent/ValidationComponent.js';
+import CharComponent from './CharComponent/CharComponent.js';
+
 
 class App extends Component {
   state = {
@@ -41,11 +44,21 @@ class App extends Component {
     })
   }
 
+  deleteLetterHandler = (index) => {
+    let newText = this.state.textInput.text.replace(this.state.textInput.text.charAt(index), '');
+    this.setState( {
+      textInput: {text: newText}
+    })
+  }
+
   switchUserNameHandler = (event) => {
     this.setState( {
       users: { username: event.target.value }
     })
   }
+  
+  
+
 
   render() {
     const style = {
@@ -55,6 +68,15 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
+
+    const letterList = Array.from(this.state.textInput.text).map( (letter, index) => {
+      return (
+      <CharComponent 
+      letter = {letter}
+      key = {index}
+      click = {() => this.deleteLetterHandler(index)} 
+      /> );})
+
     return (
       <div className="App">        
           <h1>Hi</h1>
@@ -74,8 +96,14 @@ class App extends Component {
           changed={this.switchUserNameHandler}
           currentUserName={this.state.users.username} />
           </UserOutput>
-          <input type = "text" onChange = {this.newTextHandler} />
-          <p>{this.state.textInput.text}</p>
+          <input 
+          type = "text" 
+          onChange = {this.newTextHandler}
+          value={this.state.textInput.text} />
+          <p>{this.state.textInput.text.length}</p>
+          <ValidationComponent length={this.state.textInput.text.length} />
+          {letterList}
+
           <UserOutput username = "Mak"/>
           <UserOutput username = "Muk"/>
           
