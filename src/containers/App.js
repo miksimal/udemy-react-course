@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from '../components/Persons/Person/Person';
+import Persons from '../components/Persons/Persons';
+import Cockpit from '../components/Cockpit/Cockpit';
 import UserOutput from '../components/UserOutput/UserOutput.js';
 import UserInput from '../components/UserInput/UserInput.js';
 import ValidationComponent from '../components/ValidationComponent/ValidationComponent.js';
@@ -10,22 +11,12 @@ import Radium, { StyleRoot } from 'radium';
 class App extends Component {
   state = {
     persons: [
-      { name: "mik", age: 28 },
-      { name: 'Manu', age: 29 },
-      { name: 'Max', age: 26 },
+      { name: "mik", age: 28, key: "abc" },
+      { name: 'Manu', age: 29, key: "def" },
+      { name: 'Max', age: 26, key: "ghi" },
     ],
     users: { username: "Mikkidymeeep" },
     textInput: { text: "NoTextEntered" }
-  }
-
-  switchNameHandler = (newName) => {
-    // console.log('was clicked');
-    // DON'T this.state.persons[0].name = "Mikkel";
-    this.setState({persons: [
-      { name: newName, age: 28 },
-      { name: 'mikmik', age: 29 },
-      { name: 'mikmikmik', age: 26 }
-    ]})
   }
 
   nameChangedHandler = (event) => {
@@ -61,17 +52,7 @@ class App extends Component {
 
 
   render() {
-    const style = {
-      backgroundColor: 'white',
-      font: 'inherit',
-      border: '1px solid blue',
-      padding: '8px',
-      cursor: 'pointer',
-      ':hover': {
-        backgroundColor: 'lightgreen',
-        color: 'black'
-      }
-    };
+    
 
     const letterList = Array.from(this.state.textInput.text).map( (letter, index) => {
       return (
@@ -84,19 +65,14 @@ class App extends Component {
     return (
       <StyleRoot>
       <div className="App">        
-          <h1>Hi</h1>
-          <p>this is really working</p>
-          <button 
-          style = {style}
-          onClick={() => this.switchNameHandler("MikMik!!")}>Switch Name</button>
-          <Person 
-          name = {this.state.persons[0].name} 
-          age = {this.state.persons[0].age}
-          click={this.switchNameHandler.bind(this, "Mikkidymik!")}
-          changed={this.nameChangedHandler} />
-          <Person name = {this.state.persons[1].name} age = {this.state.persons[1].age} >My hobbies: coding</Person>
-          <UserOutput 
-          username = {this.state.users.username}>
+
+          <Cockpit persons={this.state.persons} />
+
+          <Persons 
+            persons={this.state.persons}
+            changed={this.nameChangedHandler} />    
+          
+          <UserOutput username = {this.state.users.username}>
           <UserInput 
           changed={this.switchUserNameHandler}
           currentUserName={this.state.users.username} />

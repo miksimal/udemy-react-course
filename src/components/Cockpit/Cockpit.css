@@ -1,0 +1,17 @@
+.Cockpit {
+    background-color: lightblue;
+    font: inherit;
+    border: 1px solid blue;
+    padding: 8px;
+    width: 40%;
+    margin: 16px auto;
+    text-align: center;
+}
+
+.Cockpit button {
+    cursor: pointer;
+}
+
+.Cockpit button:hover {
+    background-color: lightgreen
+}
