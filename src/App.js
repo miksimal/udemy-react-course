@@ -5,7 +5,7 @@ import UserOutput from './UserOutput/UserOutput.js';
 import UserInput from './UserInput/UserInput.js';
 import ValidationComponent from './ValidationComponent/ValidationComponent.js';
 import CharComponent from './CharComponent/CharComponent.js';
-import Radium from 'radium';
+import Radium, { StyleRoot } from 'radium';
 
 
 class App extends Component {
@@ -83,6 +83,7 @@ class App extends Component {
       /> );})
 
     return (
+      <StyleRoot>
       <div className="App">        
           <h1>Hi</h1>
           <p>this is really working</p>
@@ -113,6 +114,7 @@ class App extends Component {
           <UserOutput username = "Muk"/>
           
       </div>
+      </StyleRoot>
     );
   }
 }
